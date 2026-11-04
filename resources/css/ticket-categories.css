@@ -1,0 +1,124 @@
+/* =========================================================
+   RELAY — TICKET CATEGORIES
+   ========================================================= */
+
+.relay-category-identity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.relay-category-icon {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: var(--relay-slate);
+    color: var(--relay-lime);
+}
+
+.relay-category-icon svg {
+    width: 21px;
+    height: 21px;
+}
+
+.relay-category-name {
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.relay-category-description {
+    margin-top: 5px;
+    color: var(--relay-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.relay-category-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.relay-category-stat {
+    padding: 20px;
+    border: 1px solid #414141;
+    border-radius: 22px;
+    background: var(--relay-surface);
+}
+
+.relay-category-stat-label {
+    color: var(--relay-muted);
+    font-size: 11px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.relay-category-stat-value {
+    margin-top: 12px;
+    font-size: 28px;
+    font-weight: 650;
+    letter-spacing: -1px;
+}
+
+.relay-category-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 11px;
+    border: 1px solid #59676b;
+    border-radius: 30px;
+    background: #3e4c51;
+    color: #d9e2e3;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.relay-category-badge.used {
+    border-color: #708a42;
+    background: #414b32;
+    color: var(--relay-lime);
+}
+
+.relay-category-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.relay-category-detail-header .relay-category-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 20px;
+}
+
+.relay-category-detail-header .relay-category-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.relay-category-detail-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 650;
+    letter-spacing: -0.6px;
+}
+
+.relay-category-detail-subtitle {
+    margin-top: 7px;
+    color: var(--relay-muted);
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    .relay-category-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .relay-category-detail-title {
+        font-size: 19px;
+    }
+}

@@ -30,7 +30,7 @@
                  stroke-linejoin="round">
                 <circle cx="9" cy="8" r="3"/>
                 <path d="M3 20v-2a6 6 0 0 1 12 0v2"/>
-                <path d="M17 5a3 3 0 0 1 0 6"/>
+                <path d="M17 5a3 3 3 0 0 1 0 6"/>
                 <path d="M18 14a5 5 0 0 1 3 5v1"/>
             </svg>
             @break
@@ -50,6 +50,15 @@
                  stroke-linejoin="round">
                 <rect x="3" y="4" width="18" height="13" rx="2"/>
                 <path d="M8 21h8M12 17v4"/>
+            </svg>
+            @break
+
+        @case('categories')
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-linecap="round"
+                 stroke-linejoin="round">
+                <path d="M20 13 13 20a2 2 0 0 1-2.83 0L3 12.83V4h8.83L20 12.17a2 2 0 0 1 0 2.83Z"/>
+                <circle cx="7.5" cy="8.5" r="1.5"/>
             </svg>
             @break
 

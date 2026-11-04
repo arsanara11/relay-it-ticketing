@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DeviceController;
+use App\Http\Controllers\Admin\TicketCategoryController;
 use App\Http\Controllers\Technician\DashboardController as TechnicianDashboard;
 use Illuminate\Support\Facades\Route;
 
@@ -67,6 +68,11 @@ Route::middleware('auth')->group(function () {
             Route::resource('customers', CustomerController::class);
 
             Route::resource('devices', DeviceController::class);
+
+            Route::resource(
+                'ticket-categories',
+                TicketCategoryController::class
+            );
 
         });
 

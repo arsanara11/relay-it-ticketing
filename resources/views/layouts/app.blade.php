@@ -11,6 +11,7 @@
         'resources/css/app.css',
         'resources/css/customers.css',
         'resources/css/devices.css',
+        'resources/css/ticket-categories.css',
         'resources/js/app.js'
     ])
 </head>
@@ -59,6 +60,13 @@
                         label="Devices"
                         :href="route('admin.devices.index')"
                         :active="request()->routeIs('admin.devices.*')"
+                    />
+
+                    <x-sidebar-icon
+                        name="categories"
+                        label="Ticket Categories"
+                        :href="route('admin.ticket-categories.index')"
+                        :active="request()->routeIs('admin.ticket-categories.*')"
                     />
 
                     <x-sidebar-icon

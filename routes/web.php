@@ -1,7 +1,91 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Technician\DashboardController as TechnicianDashboard;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+/*
+|--------------------------------------------------------------------------
+| Root Route
+|--------------------------------------------------------------------------
+*/
+
+Route::redirect('/', '/dashboard');
+
+/*
+|--------------------------------------------------------------------------
+| Authentication Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('guest')->group(function () {
+
+    Route::get('/login', [LoginController::class, 'show'])
+        ->name('login');
+
+    Route::post('/login', [LoginController::class, 'login'])
+        ->middleware('throttle:5,1');
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Authenticated Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->group(function () {
+
+    // Redirect users based on their roles
+    Route::get('/dashboard', function () {
+        return match (auth()->user()->role) {
+            'admin' => redirect()->route('admin.dashboard'),
+            'technician' => redirect()->route('technician.dashboard'),
+            default => abort(403),
+        };
+    })->name('dashboard');
+
+    // Logout
+    Route::post('/logout', [LoginController::class, 'logout'])
+        ->name('logout');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Routes
+    |--------------------------------------------------------------------------
+    */
+
+    Route::prefix('admin')
+        ->name('admin.')
+        ->middleware('role:admin')
+        ->group(function () {
+
+            // Admin Dashboard
+            Route::get('/dashboard', [AdminDashboard::class, 'index'])
+                ->name('dashboard');
+
+            // Customer Management (CRUD)
+            Route::resource('customers', CustomerController::class);
+
+        });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Technician Routes
+    |--------------------------------------------------------------------------
+    */
+
+    Route::prefix('technician')
+        ->name('technician.')
+        ->middleware('role:technician')
+        ->group(function () {
+
+            // Technician Dashboard
+            Route::get('/dashboard', [TechnicianDashboard::class, 'index'])
+                ->name('dashboard');
+
+        });
+
 });

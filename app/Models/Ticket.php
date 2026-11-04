@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Ticket extends Model
 {
@@ -84,4 +85,10 @@ class Ticket extends Model
     {
         return $this->hasMany(TicketPayment::class);
     }
+
+    public function handover(): HasOne
+    {
+        return $this->hasOne(TicketHandover::class);
+    }
+
 }

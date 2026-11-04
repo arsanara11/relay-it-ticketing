@@ -10,7 +10,7 @@
     class="relay-nav-link {{ $active ? 'active' : '' }}"
     title="{{ $label }}"
     aria-label="{{ $label }}"
-    @if ($active) aria-current="page" @endif
+    @if($active) aria-current="page" @endif
 >
     @switch($name)
         @case('dashboard')

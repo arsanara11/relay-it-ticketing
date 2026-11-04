@@ -1,0 +1,265 @@
+/* =========================================================
+   RELAY — CUSTOMER MANAGEMENT
+   ========================================================= */
+
+.relay-page-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.relay-section-description {
+    margin: 8px 0 0;
+    color: var(--relay-muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.relay-action-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid var(--relay-border);
+    border-radius: 30px;
+    background: #404040;
+    color: var(--relay-text);
+    font-size: 12px;
+    font-weight: 600;
+    transition: background 180ms ease;
+}
+
+.relay-action-link:hover {
+    background: var(--relay-slate);
+}
+
+.relay-customer-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 28px 0 22px;
+}
+
+.relay-search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 460px;
+}
+
+.relay-search-form .relay-input {
+    border-radius: 30px;
+}
+
+.relay-customer-count {
+    color: var(--relay-muted);
+    font-size: 12px;
+}
+
+.relay-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.relay-customer-identity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.relay-customer-avatar {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--relay-slate);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.relay-customer-name {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.relay-customer-id {
+    margin-top: 4px;
+    color: var(--relay-muted);
+    font-size: 11px;
+}
+
+.relay-row-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.relay-row-actions form {
+    margin: 0;
+}
+
+.relay-table-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border: 1px solid var(--relay-border);
+    border-radius: 12px;
+    background: #414141;
+    color: var(--relay-text);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.relay-table-action:hover {
+    background: var(--relay-slate);
+}
+
+.relay-table-action.danger {
+    color: #ff9b9b;
+}
+
+.relay-table-action.danger:hover {
+    background: #623a3a;
+}
+
+.relay-alert {
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    border: 1px solid var(--relay-border);
+    border-radius: 16px;
+    background: var(--relay-surface);
+    font-size: 13px;
+}
+
+.relay-alert.success {
+    border-color: #6e8a40;
+    color: var(--relay-lime);
+}
+
+.relay-alert.error {
+    border-color: #a15d5d;
+    color: #ffaaaa;
+}
+
+.relay-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.relay-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.relay-form-field.full {
+    grid-column: 1 / -1;
+}
+
+.relay-form-label {
+    color: #e5e5e5;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.relay-required {
+    color: var(--relay-lime);
+}
+
+.relay-form-error {
+    color: #ffaaaa;
+    font-size: 11px;
+}
+
+.relay-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 24px;
+    border-top: 1px solid var(--relay-border);
+}
+
+.relay-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.relay-detail-label {
+    margin-bottom: 8px;
+    color: var(--relay-muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.relay-detail-value {
+    color: var(--relay-text);
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+.relay-detail-section {
+    margin-top: 24px;
+}
+
+.relay-detail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.relay-detail-item {
+    padding: 16px;
+    border: 1px solid var(--relay-border);
+    border-radius: 16px;
+    background: var(--relay-surface-dark);
+    font-size: 13px;
+}
+
+.relay-pagination {
+    margin-top: 24px;
+}
+
+.relay-pagination nav {
+    color: var(--relay-muted);
+}
+
+.relay-pagination a {
+    color: var(--relay-text);
+}
+
+@media (max-width: 768px) {
+    .relay-page-actions {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .relay-form-grid,
+    .relay-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .relay-search-form {
+        max-width: none;
+    }
+
+    .relay-form-actions {
+        flex-wrap: wrap;
+    }
+}

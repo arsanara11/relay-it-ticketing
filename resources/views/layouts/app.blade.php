@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,11 @@
 
     <title>@yield('title', 'Dashboard') — Relay</title>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite([
+        'resources/css/app.css',
+        'resources/css/customers.css',
+        'resources/js/app.js'
+    ])
 </head>
 
 <body>
@@ -28,10 +33,14 @@
                     name="dashboard"
                     label="Dashboard"
                     :href="route('dashboard')"
-                    :active="request()->routeIs('admin.dashboard', 'technician.dashboard')"
+                    :active="request()->routeIs(
+                        'admin.dashboard',
+                        'technician.dashboard'
+                    )"
                 />
 
                 @if (auth()->user()->isAdmin())
+
                     <x-sidebar-icon
                         name="tickets"
                         label="Service Orders"
@@ -56,6 +65,7 @@
                         label="Reports"
                         href="#"
                     />
+
                 @endif
 
             </nav>

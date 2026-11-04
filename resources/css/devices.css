@@ -1,0 +1,143 @@
+/* =========================================================
+   RELAY — DEVICE MANAGEMENT
+   ========================================================= */
+
+.relay-device-identity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.relay-device-icon {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: var(--relay-slate);
+    color: var(--relay-lime);
+}
+
+.relay-device-icon svg {
+    width: 21px;
+    height: 21px;
+}
+
+.relay-device-name {
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.relay-device-meta {
+    margin-top: 5px;
+    color: var(--relay-muted);
+    font-size: 11px;
+}
+
+.relay-device-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 11px;
+    border: 1px solid #59676b;
+    border-radius: 30px;
+    background: #3e4c51;
+    color: #d9e2e3;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.relay-device-owner {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.relay-device-owner-sub {
+    margin-top: 5px;
+    color: var(--relay-muted);
+    font-size: 11px;
+}
+
+.relay-device-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.relay-device-stat {
+    padding: 20px;
+    border: 1px solid #414141;
+    border-radius: 22px;
+    background: var(--relay-surface);
+}
+
+.relay-device-stat-label {
+    color: var(--relay-muted);
+    font-size: 11px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.relay-device-stat-value {
+    margin-top: 12px;
+    font-size: 28px;
+    font-weight: 650;
+    letter-spacing: -1px;
+}
+
+.relay-device-form-hint {
+    color: var(--relay-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.relay-device-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.relay-device-detail-header .relay-device-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 20px;
+}
+
+.relay-device-detail-header .relay-device-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.relay-device-detail-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 650;
+    letter-spacing: -0.6px;
+}
+
+.relay-device-detail-subtitle {
+    margin-top: 7px;
+    color: var(--relay-muted);
+    font-size: 12px;
+}
+
+.relay-device-link {
+    color: var(--relay-lime);
+    font-weight: 600;
+}
+
+.relay-device-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .relay-device-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .relay-device-detail-title {
+        font-size: 19px;
+    }
+}

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +10,7 @@
     @vite([
         'resources/css/app.css',
         'resources/css/customers.css',
+        'resources/css/devices.css',
         'resources/js/app.js'
     ])
 </head>
@@ -57,7 +57,8 @@
                     <x-sidebar-icon
                         name="devices"
                         label="Devices"
-                        href="#"
+                        :href="route('admin.devices.index')"
+                        :active="request()->routeIs('admin.devices.*')"
                     />
 
                     <x-sidebar-icon

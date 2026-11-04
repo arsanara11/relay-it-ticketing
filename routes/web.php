@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\DeviceController;
 use App\Http\Controllers\Technician\DashboardController as TechnicianDashboard;
 use Illuminate\Support\Facades\Route;
 
@@ -38,7 +39,6 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
 
-    // Redirect users based on their roles
     Route::get('/dashboard', function () {
         return match (auth()->user()->role) {
             'admin' => redirect()->route('admin.dashboard'),
@@ -47,7 +47,6 @@ Route::middleware('auth')->group(function () {
         };
     })->name('dashboard');
 
-    // Logout
     Route::post('/logout', [LoginController::class, 'logout'])
         ->name('logout');
 
@@ -62,12 +61,12 @@ Route::middleware('auth')->group(function () {
         ->middleware('role:admin')
         ->group(function () {
 
-            // Admin Dashboard
             Route::get('/dashboard', [AdminDashboard::class, 'index'])
                 ->name('dashboard');
 
-            // Customer Management (CRUD)
             Route::resource('customers', CustomerController::class);
+
+            Route::resource('devices', DeviceController::class);
 
         });
 
@@ -82,7 +81,6 @@ Route::middleware('auth')->group(function () {
         ->middleware('role:technician')
         ->group(function () {
 
-            // Technician Dashboard
             Route::get('/dashboard', [TechnicianDashboard::class, 'index'])
                 ->name('dashboard');
 

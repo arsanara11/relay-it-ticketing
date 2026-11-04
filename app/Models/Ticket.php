@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -9,6 +10,26 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Ticket extends Model
 {
+    use HasFactory;
+
+    public const STATUSES = [
+        'received',
+        'diagnosing',
+        'awaiting_approval',
+        'repairing',
+        'ready_for_pickup',
+        'completed',
+        'cancelled',
+        'on_hold',
+    ];
+
+    public const PRIORITIES = [
+        'low',
+        'medium',
+        'high',
+        'urgent',
+    ];
+
     protected $fillable = [
         'ticket_number',
         'customer_id',
@@ -90,5 +111,4 @@ class Ticket extends Model
     {
         return $this->hasOne(TicketHandover::class);
     }
-
 }

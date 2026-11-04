@@ -1,0 +1,179 @@
+/* =========================================================
+   RELAY — SERVICE ORDERS
+   ========================================================= */
+
+.relay-ticket-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.relay-ticket-stat {
+    padding: 22px;
+    border: 1px solid #414141;
+    border-radius: 22px;
+    background: var(--relay-surface);
+}
+
+.relay-ticket-stat-label {
+    color: var(--relay-muted);
+    font-size: 11px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.relay-ticket-stat-value {
+    margin-top: 12px;
+    font-size: 28px;
+    font-weight: 650;
+    letter-spacing: -1px;
+}
+
+.relay-ticket-number {
+    color: var(--relay-lime);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.relay-ticket-subject {
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.relay-ticket-meta {
+    margin-top: 5px;
+    color: var(--relay-muted);
+    font-size: 11px;
+}
+
+.relay-ticket-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 11px;
+    border: 1px solid #59676b;
+    border-radius: 30px;
+    background: #3e4c51;
+    color: #d9e2e3;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.relay-ticket-badge.completed {
+    border-color: #708a42;
+    background: #414b32;
+    color: var(--relay-lime);
+}
+
+.relay-ticket-badge.cancelled {
+    border-color: #825555;
+    background: #4e3838;
+    color: #ffaaaa;
+}
+
+.relay-ticket-badge.urgent {
+    border-color: #a15d5d;
+    background: #563b3b;
+    color: #ffaaaa;
+}
+
+.relay-ticket-badge.high {
+    border-color: #a48b57;
+    background: #514735;
+    color: #f1d59b;
+}
+
+.relay-ticket-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin: 26px 0 20px;
+}
+
+.relay-ticket-toolbar .relay-search-form {
+    max-width: 480px;
+    flex: 1;
+}
+
+.relay-ticket-filter {
+    min-width: 190px;
+    width: auto;
+    border-radius: 30px;
+}
+
+.relay-ticket-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.relay-ticket-section {
+    margin-top: 24px;
+}
+
+.relay-ticket-activity {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.relay-ticket-activity-item {
+    position: relative;
+    padding: 16px 18px;
+    border: 1px solid var(--relay-border);
+    border-radius: 16px;
+    background: var(--relay-surface-dark);
+}
+
+.relay-ticket-activity-title {
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.relay-ticket-activity-meta {
+    margin-top: 6px;
+    color: var(--relay-muted);
+    font-size: 11px;
+}
+
+.relay-ticket-activity-description {
+    margin-top: 10px;
+    color: #d5d5d5;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.relay-ticket-warning {
+    padding: 16px;
+    border: 1px solid #846947;
+    border-radius: 16px;
+    background: #453d32;
+    color: #f0d4a4;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .relay-ticket-summary,
+    .relay-ticket-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .relay-ticket-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .relay-ticket-toolbar .relay-search-form {
+        max-width: none;
+        width: 100%;
+    }
+
+    .relay-ticket-filter {
+        width: 100%;
+    }
+}

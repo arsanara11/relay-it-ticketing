@@ -12,6 +12,7 @@
         'resources/css/customers.css',
         'resources/css/devices.css',
         'resources/css/ticket-categories.css',
+        'resources/css/tickets.css',
         'resources/js/app.js'
     ])
 </head>
@@ -45,7 +46,8 @@
                     <x-sidebar-icon
                         name="tickets"
                         label="Service Orders"
-                        href="#"
+                        :href="route('admin.tickets.index')"
+                        :active="request()->routeIs('admin.tickets.*')"
                     />
 
                     <x-sidebar-icon

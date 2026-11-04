@@ -5,38 +5,19 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DeviceController;
 use App\Http\Controllers\Admin\TicketCategoryController;
+use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Technician\DashboardController as TechnicianDashboard;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Root Route
-|--------------------------------------------------------------------------
-*/
-
 Route::redirect('/', '/dashboard');
 
-/*
-|--------------------------------------------------------------------------
-| Authentication Routes
-|--------------------------------------------------------------------------
-*/
-
 Route::middleware('guest')->group(function () {
-
     Route::get('/login', [LoginController::class, 'show'])
         ->name('login');
 
     Route::post('/login', [LoginController::class, 'login'])
         ->middleware('throttle:5,1');
-
 });
-
-/*
-|--------------------------------------------------------------------------
-| Authenticated Routes
-|--------------------------------------------------------------------------
-*/
 
 Route::middleware('auth')->group(function () {
 
@@ -50,12 +31,6 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/logout', [LoginController::class, 'logout'])
         ->name('logout');
-
-    /*
-    |--------------------------------------------------------------------------
-    | Admin Routes
-    |--------------------------------------------------------------------------
-    */
 
     Route::prefix('admin')
         ->name('admin.')
@@ -74,13 +49,9 @@ Route::middleware('auth')->group(function () {
                 TicketCategoryController::class
             );
 
-        });
+            Route::resource('tickets', TicketController::class);
 
-    /*
-    |--------------------------------------------------------------------------
-    | Technician Routes
-    |--------------------------------------------------------------------------
-    */
+        });
 
     Route::prefix('technician')
         ->name('technician.')
@@ -91,5 +62,4 @@ Route::middleware('auth')->group(function () {
                 ->name('dashboard');
 
         });
-
 });

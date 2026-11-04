@@ -6,6 +6,493 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* =========================================================
+   RELAY — DESIGN SYSTEM
+   ========================================================= */
+
+:root {
+    --relay-bg: #222222;
+    --relay-surface: #343434;
+    --relay-surface-soft: #3b3b3b;
+    --relay-surface-dark: #292929;
+
+    --relay-slate: #52646b;
+    --relay-lime: #c9f34d;
+
+    --relay-text: #f5f5f5;
+    --relay-muted: #a8b0b1;
+    --relay-border: #454545;
+}
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--relay-bg);
+    color: var(--relay-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* =========================================================
+   MAIN APPLICATION LAYOUT
+   ========================================================= */
+
+.relay-shell {
+    display: flex;
+    min-height: 100vh;
+    padding: 24px;
+    gap: 24px;
+}
+
+.relay-main {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 10px 40px 0;
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.relay-sidebar {
+    position: sticky;
+    top: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 76px;
+    height: calc(100vh - 48px);
+    flex-shrink: 0;
+
+    padding: 22px 12px;
+    border-radius: 40px;
+
+    background: #303030;
+
+    box-shadow:
+        10px 10px 24px #191919,
+        -5px -5px 18px #303030;
+}
+
+.relay-logo {
+    display: grid;
+    place-items: center;
+
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    background: var(--relay-lime);
+
+    color: #222222;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+}
+
+.relay-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    gap: 12px;
+    margin-top: 54px;
+}
+
+.relay-nav-bottom {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    margin-top: auto;
+}
+
+.relay-nav-link {
+    display: grid;
+    place-items: center;
+
+    width: 48px;
+    height: 48px;
+
+    border: none;
+    border-radius: 18px;
+
+    background: transparent;
+    color: var(--relay-muted);
+
+    cursor: pointer;
+    transition:
+        background 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+}
+
+.relay-nav-link:hover {
+    background: #414141;
+    color: #ffffff;
+}
+
+.relay-nav-link:active {
+    transform: scale(0.96);
+}
+
+.relay-nav-link.active {
+    background: var(--relay-slate);
+    color: var(--relay-lime);
+
+    box-shadow:
+        inset 2px 2px 5px #45545a,
+        3px 3px 8px #242424;
+}
+
+.relay-nav-link svg {
+    width: 21px;
+    height: 21px;
+    stroke-width: 1.8;
+}
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.relay-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+    margin-bottom: 34px;
+}
+
+.relay-eyebrow {
+    color: var(--relay-muted);
+
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.relay-page-title {
+    margin: 8px 0 0;
+
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 650;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+}
+
+/* =========================================================
+   USER PROFILE
+   ========================================================= */
+
+.relay-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.relay-user-avatar {
+    display: grid;
+    place-items: center;
+
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    background: var(--relay-slate);
+
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.relay-user-name {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.relay-user-role {
+    margin-top: 4px;
+
+    color: var(--relay-muted);
+    font-size: 11px;
+    text-transform: capitalize;
+}
+
+/* =========================================================
+   PANELS & CARDS
+   ========================================================= */
+
+.relay-panel {
+    padding: 26px;
+
+    border: 1px solid #3e3e3e;
+    border-radius: 28px;
+
+    background: var(--relay-surface);
+
+    box-shadow:
+        8px 8px 22px #1b1b1b,
+        -4px -4px 16px #292929;
+}
+
+.relay-panel-title {
+    margin: 0;
+
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+}
+
+.relay-muted {
+    color: var(--relay-muted);
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.relay-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 9px;
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: var(--relay-lime);
+    color: #222222;
+
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+
+    cursor: pointer;
+
+    transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+}
+
+.relay-button:hover {
+    opacity: 0.9;
+}
+
+.relay-button:active {
+    transform: scale(0.98);
+}
+
+.relay-button-secondary {
+    background: var(--relay-slate);
+    color: #ffffff;
+}
+
+/* =========================================================
+   FORMS & INPUTS
+   ========================================================= */
+
+.relay-input {
+    width: 100%;
+    padding: 13px 16px;
+
+    border: 1px solid var(--relay-border);
+    border-radius: 15px;
+
+    background: var(--relay-surface-dark);
+    color: var(--relay-text);
+
+    outline: none;
+
+    transition: border-color 180ms ease;
+}
+
+.relay-input::placeholder {
+    color: #899395;
+}
+
+.relay-input:focus {
+    border-color: var(--relay-lime);
+}
+
+.relay-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+textarea.relay-input {
+    min-height: 110px;
+    resize: vertical;
+}
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+.relay-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.relay-table th {
+    padding: 16px;
+
+    color: var(--relay-muted);
+
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.relay-table td {
+    padding: 18px 16px;
+
+    border-top: 1px solid var(--relay-border);
+
+    font-size: 13px;
+}
+
+.relay-table tbody tr {
+    transition: background 180ms ease;
+}
+
+.relay-table tbody tr:hover {
+    background: var(--relay-surface-soft);
+}
+
+/* =========================================================
+   EMPTY STATES
+   ========================================================= */
+
+.relay-empty {
+    padding: 56px 20px;
+    text-align: center;
+
+    color: var(--relay-muted);
+    font-size: 13px;
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+.relay-button:focus-visible,
+.relay-nav-link:focus-visible,
+.relay-logo:focus-visible {
+    outline: 2px solid var(--relay-lime);
+    outline-offset: 4px;
+}
+
+/* =========================================================
+   RESPONSIVE — TABLET & MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .relay-shell {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .relay-sidebar {
+        top: 12px;
+
+        width: 58px;
+        height: calc(100vh - 24px);
+
+        padding: 16px 5px;
+        border-radius: 30px;
+    }
+
+    .relay-logo {
+        width: 40px;
+        height: 40px;
+        font-size: 21px;
+    }
+
+    .relay-nav {
+        margin-top: 36px;
+        gap: 8px;
+    }
+
+    .relay-nav-link {
+        width: 44px;
+        height: 44px;
+    }
+
+    .relay-main {
+        padding: 12px 0;
+    }
+
+    .relay-topbar {
+        align-items: flex-start;
+        margin-bottom: 24px;
+    }
+
+    .relay-page-title {
+        font-size: 27px;
+    }
+
+    .relay-user-name,
+    .relay-user-role {
+        display: none;
+    }
+
+    .relay-user-avatar {
+        width: 38px;
+        height: 38px;
+    }
+
+    .relay-panel {
+        padding: 16px;
+        border-radius: 20px;
+    }
+
+    .relay-table {
+        min-width: 650px;
+    }
 }

@@ -1,59 +1,247 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Relay
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**An Internal IT Service & Repair Ticketing Management System**
 
-## About Laravel
+Relay is a web-based application designed to streamline IT device servicing and repair operations through a centralized ticketing system.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Built with Laravel, Relay helps service teams manage customers, devices, repair requests, technician assignments, and service progress within a structured workflow.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Overview
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Relay provides an internal workspace for administrators and technicians to manage the complete lifecycle of IT service requests, from device intake and diagnosis to repair completion and handover.
 
-## Learning Laravel
+Each service request is represented by a unique ticket, allowing the team to track its status, assigned technician, and activity history.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+The system is intended for internal service operations. Customers do not require an account to use the service.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Key Features
 
-## Laravel Sponsors
+- **Role-Based Access Control** — Separate access and interfaces for administrators and technicians.
+- **Dashboard** — Role-specific overview of service operations and assigned tickets.
+- **Customer Management** — Create, update, search, and manage customer records.
+- **Device Management** — Register customer devices and maintain their information.
+- **Ticket Categories** — Organize service requests by issue or service type.
+- **Service Ticket Management** — Create, assign, update, filter, and track service tickets.
+- **Automatic Ticket Numbering** — Generate unique ticket identifiers such as `RLY-2026-0001`.
+- **Technician Workspace** — View assigned tickets and their details.
+- **Activity History** — Record ticket creation, assignment, and status changes.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Planned Features
 
-### Premium Partners
+- Technician diagnosis and repair notes
+- Service status updates
+- Customer approval and repair cost estimation
+- Service costs and payment tracking
+- Device handover records
+- Reports and analytics
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Service Workflow
 
-## Contributing
+Relay follows a structured ticket lifecycle:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. **Received** — The administrator registers the customer, device, and reported issue.
+2. **Diagnosing** — The assigned technician inspects the device and identifies the problem.
+3. **Awaiting Approval** — The service estimate awaits customer confirmation when required.
+4. **Repairing** — The technician performs the approved repair.
+5. **Ready for Pickup** — The repaired device is ready to be returned.
+6. **Completed** — The service is finalized and the ticket is closed.
 
-## Code of Conduct
+Additional statuses include **On Hold** for temporarily paused work and **Cancelled** for discontinued requests.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## User Roles
 
-## Security Vulnerabilities
+### Administrator
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Administrators manage service operations, including customer and device records, ticket categories, ticket creation, technician assignments, and ticket monitoring.
+
+### Technician
+
+Technicians access their assigned service tickets, review device information, and follow the progress of repair requests. Diagnosis, repair notes, and status management are part of the planned technician workflow.
+
+## Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| Laravel 12 | Backend framework |
+| PHP | Server-side development |
+| MySQL | Relational database |
+| Blade | Server-rendered views |
+| Tailwind CSS 4 | User interface styling |
+| Alpine.js | Lightweight frontend interactivity |
+| Vite | Frontend asset bundling |
+| Chart.js | Planned analytics visualization |
+
+## Interface Design
+
+Relay uses a modern, minimal dashboard interface with a dark visual theme.
+
+The design combines charcoal backgrounds, slate accents, lime-green highlights, rounded components, and compact icon-based navigation to provide a consistent workspace for service operations.
+
+The administrator and technician interfaces are tailored to their respective responsibilities.
+
+## Installation
+
+### Prerequisites
+
+Make sure the following are installed:
+
+- PHP and Composer
+- Node.js and npm
+- MySQL
+- Git
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/arsanara11/relay-it-ticketing.git
+cd relay-it-ticketing
+```
+
+### 2. Install dependencies
+
+```bash
+composer install
+npm install
+```
+
+### 3. Configure the environment
+
+Create an environment configuration file:
+
+**Windows (Command Prompt):**
+
+```bash
+copy .env.example .env
+```
+
+**macOS / Linux:**
+
+```bash
+cp .env.example .env
+```
+
+Generate the application key:
+
+```bash
+php artisan key:generate
+```
+
+### 4. Configure the database
+
+Create a MySQL database named `relay_db`, then update the database configuration in `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=relay_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Adjust the credentials according to your local environment.
+
+### 5. Run migrations
+
+```bash
+php artisan migrate
+```
+
+### 6. Seed initial data
+
+If the database seeders are configured, run:
+
+```bash
+php artisan db:seed
+```
+
+Demo administrator and technician accounts may require additional environment configuration, depending on the project's seeder setup.
+
+### 7. Start the application
+
+Run the Laravel development server:
+
+```bash
+php artisan serve
+```
+
+In a separate terminal, start Vite:
+
+```bash
+npm run dev
+```
+
+Open the application at:
+
+```text
+http://127.0.0.1:8000
+```
+
+## Project Structure
+
+```text
+app/
+├── Http/
+│   └── Controllers/
+│       ├── Admin/
+│       └── Technician/
+├── Models/
+└── Services/
+
+database/
+├── migrations/
+└── seeders/
+
+resources/
+├── css/
+├── js/
+└── views/
+    ├── admin/
+    ├── auth/
+    ├── components/
+    ├── layouts/
+    └── technician/
+
+routes/
+└── web.php
+```
+
+## Collaboration
+
+Relay is developed as a collaborative academic project.
+
+Contributors are encouraged to work on separate feature branches and submit pull requests before merging changes into the `main` branch.
+
+Example:
+
+```bash
+git switch main
+git pull origin main
+git switch -c feature/your-feature
+```
+
+After implementing and testing the feature:
+
+```bash
+git add .
+git commit -m "feat: implement your feature"
+git push -u origin feature/your-feature
+```
+
+Create a pull request on GitHub for review and integration.
+
+## Development Status
+
+**In Active Development**
+
+The project currently includes the core administrative management modules, service ticket management, and the initial technician workspace.
+
+Additional technician workflows, billing functionality, and reporting features are planned for upcoming development stages.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+No license has been specified for this repository.
+
+---
+
+**Relay** — *A more organized way to manage IT service operations.*

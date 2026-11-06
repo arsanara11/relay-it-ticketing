@@ -1,22 +1,29 @@
+
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DeviceController;
 use App\Http\Controllers\Admin\TicketCategoryController;
-use App\Http\Controllers\Admin\TicketController;
+use App\Http\Controllers\Admin\TicketController as AdminTicketController;
+
 use App\Http\Controllers\Technician\DashboardController as TechnicianDashboard;
+use App\Http\Controllers\Technician\TicketController as TechnicianTicketController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/dashboard');
 
 Route::middleware('guest')->group(function () {
+
     Route::get('/login', [LoginController::class, 'show'])
         ->name('login');
 
     Route::post('/login', [LoginController::class, 'login'])
         ->middleware('throttle:5,1');
+
 });
 
 Route::middleware('auth')->group(function () {
@@ -49,7 +56,7 @@ Route::middleware('auth')->group(function () {
                 TicketCategoryController::class
             );
 
-            Route::resource('tickets', TicketController::class);
+            Route::resource('tickets', AdminTicketController::class);
 
         });
 
@@ -61,5 +68,12 @@ Route::middleware('auth')->group(function () {
             Route::get('/dashboard', [TechnicianDashboard::class, 'index'])
                 ->name('dashboard');
 
+            Route::get('/tickets', [TechnicianTicketController::class, 'index'])
+                ->name('tickets.index');
+
+            Route::get('/tickets/{ticket}', [TechnicianTicketController::class, 'show'])
+                ->name('tickets.show');
+
         });
+
 });

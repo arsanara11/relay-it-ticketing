@@ -1,0 +1,149 @@
+.relay-tech-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.relay-tech-stat {
+    padding: 22px;
+    border: 1px solid #414141;
+    border-radius: 22px;
+    background: var(--relay-surface);
+}
+
+.relay-tech-stat-label {
+    color: var(--relay-muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+
+.relay-tech-stat-value {
+    margin-top: 12px;
+    color: var(--relay-text);
+    font-size: 28px;
+    font-weight: 650;
+    letter-spacing: -1px;
+}
+
+.relay-tech-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.relay-tech-welcome {
+    color: var(--relay-text);
+    font-size: 24px;
+    font-weight: 650;
+    letter-spacing: -0.8px;
+}
+
+.relay-tech-description {
+    margin-top: 8px;
+    color: var(--relay-muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.relay-tech-ticket-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.relay-tech-ticket {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px;
+    border: 1px solid var(--relay-border);
+    border-radius: 18px;
+    background: var(--relay-surface-dark);
+}
+
+.relay-tech-ticket-main {
+    min-width: 0;
+}
+
+.relay-tech-ticket-number {
+    color: var(--relay-lime);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.relay-tech-ticket-title {
+    margin-top: 7px;
+    color: var(--relay-text);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.relay-tech-ticket-meta {
+    margin-top: 7px;
+    color: var(--relay-muted);
+    font-size: 11px;
+}
+
+.relay-tech-ticket-side {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.relay-tech-section {
+    margin-top: 24px;
+}
+
+.relay-tech-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.relay-tech-section-title {
+    color: var(--relay-text);
+    font-size: 16px;
+    font-weight: 650;
+}
+
+.relay-tech-muted {
+    color: var(--relay-muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.relay-tech-empty {
+    padding: 48px 20px;
+    text-align: center;
+    color: var(--relay-muted);
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .relay-tech-summary,
+    .relay-tech-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .relay-tech-ticket {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .relay-tech-ticket-side {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .relay-tech-welcome {
+        font-size: 20px;
+    }
+}

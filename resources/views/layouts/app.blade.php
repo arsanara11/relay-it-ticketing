@@ -13,6 +13,7 @@
         'resources/css/devices.css',
         'resources/css/ticket-categories.css',
         'resources/css/tickets.css',
+        'resources/css/technician.css',
         'resources/js/app.js'
     ])
 </head>
@@ -77,6 +78,15 @@
                         href="#"
                     />
 
+                @else
+
+                    <x-sidebar-icon
+                        name="tickets"
+                        label="Assigned Tickets"
+                        :href="route('technician.tickets.index')"
+                        :active="request()->routeIs('technician.tickets.*')"
+                    />
+
                 @endif
 
             </nav>
@@ -130,7 +140,7 @@
                         </div>
 
                         <div class="relay-user-role">
-                            {{ auth()->user()->role }}
+                            {{ ucfirst(auth()->user()->role) }}
                         </div>
                     </div>
 

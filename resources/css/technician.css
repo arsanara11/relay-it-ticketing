@@ -127,6 +127,296 @@
     font-size: 13px;
 }
 
+.relay-tech-full-width {
+    grid-column: 1 / -1;
+}
+
+.relay-tech-prewrap {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.relay-tech-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(290px, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.relay-tech-workspace-main,
+.relay-tech-workspace-side {
+    min-width: 0;
+}
+
+.relay-tech-workspace-main > .relay-tech-section:first-child,
+.relay-tech-workspace-side > .relay-tech-section:first-child {
+    margin-top: 24px;
+}
+
+.relay-tech-panel-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.relay-tech-overline {
+    margin-bottom: 10px;
+    color: var(--relay-lime);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.relay-tech-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.relay-tech-field {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 0;
+}
+
+.relay-tech-label {
+    color: var(--relay-text);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.relay-tech-input {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    padding: 12px 15px;
+    border: 1px solid #4b4b4b;
+    border-radius: 13px;
+    outline: none;
+    background: #292929;
+    color: var(--relay-text);
+    font: inherit;
+    font-size: 13px;
+    line-height: 1.5;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.relay-tech-input:focus {
+    border-color: var(--relay-lime);
+    box-shadow: 0 0 0 3px rgba(201, 243, 77, 0.12);
+}
+
+.relay-tech-input::placeholder {
+    color: #929292;
+}
+
+.relay-tech-input option {
+    background: #292929;
+    color: #f5f5f5;
+}
+
+.relay-tech-textarea {
+    min-height: 125px;
+    resize: vertical;
+}
+
+.relay-tech-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    min-height: 44px;
+    padding: 11px 20px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--relay-lime);
+    color: #222222;
+    font-size: 12px;
+    font-weight: 750;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: filter 160ms ease, transform 160ms ease;
+}
+
+.relay-tech-submit:hover {
+    filter: brightness(0.94);
+    transform: translateY(-1px);
+}
+
+.relay-tech-submit:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+}
+
+.relay-tech-hint {
+    display: block;
+    margin-top: 12px;
+    color: var(--relay-muted);
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.relay-tech-current-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 15px 17px;
+    border: 1px solid var(--relay-border);
+    border-radius: 15px;
+    background: var(--relay-surface-dark);
+}
+
+.relay-tech-diagnosis-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    padding: 18px;
+    border: 1px solid var(--relay-border);
+    border-radius: 16px;
+    background: var(--relay-surface-dark);
+}
+
+.relay-tech-summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    color: var(--relay-text);
+    font-size: 12px;
+}
+
+.relay-tech-summary-row strong {
+    color: var(--relay-lime);
+    font-size: 14px;
+}
+
+.relay-tech-approval {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 11px;
+    border: 1px solid #555555;
+    border-radius: 999px;
+    background: #414141;
+    color: #dedede;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.relay-tech-approval.approved {
+    border-color: rgba(201, 243, 77, 0.4);
+    background: rgba(201, 243, 77, 0.12);
+    color: var(--relay-lime);
+}
+
+.relay-tech-approval.rejected {
+    border-color: rgba(255, 135, 135, 0.35);
+    background: rgba(255, 135, 135, 0.1);
+    color: #ff9999;
+}
+
+.relay-tech-readonly {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+    color: var(--relay-text);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.relay-tech-notice {
+    padding: 15px 17px;
+    border: 1px solid #505050;
+    border-radius: 15px;
+    background: #2b2b2b;
+    color: var(--relay-muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.relay-tech-alert {
+    margin: 20px 0;
+    padding: 15px 18px;
+    border: 1px solid;
+    border-radius: 15px;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.relay-tech-alert-success {
+    border-color: rgba(201, 243, 77, 0.4);
+    background: rgba(201, 243, 77, 0.09);
+    color: #dcffa0;
+}
+
+.relay-tech-alert-error {
+    border-color: rgba(255, 135, 135, 0.4);
+    background: rgba(255, 135, 135, 0.08);
+    color: #ffaaaa;
+}
+
+.relay-tech-alert ul {
+    margin: 9px 0 0;
+    padding-left: 18px;
+    list-style: disc;
+}
+
+.relay-tech-note-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.relay-tech-note {
+    padding: 17px 18px;
+    border: 1px solid var(--relay-border);
+    border-radius: 17px;
+    background: var(--relay-surface-dark);
+}
+
+.relay-tech-note-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.relay-tech-note-header strong {
+    color: var(--relay-text);
+    font-size: 12px;
+}
+
+.relay-tech-note-content {
+    margin-top: 12px;
+    color: var(--relay-text);
+    font-size: 12px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.relay-tech-workspace-side .relay-ticket-activity {
+    margin-top: 24px;
+}
+
+@media (max-width: 1100px) {
+    .relay-tech-workspace {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .relay-tech-summary,
     .relay-tech-info-grid {
@@ -145,5 +435,18 @@
 
     .relay-tech-welcome {
         font-size: 20px;
+    }
+
+    .relay-tech-full-width {
+        grid-column: auto;
+    }
+
+    .relay-tech-panel-heading {
+        flex-direction: column;
+    }
+
+    .relay-tech-submit {
+        width: 100%;
+        align-self: stretch;
     }
 }

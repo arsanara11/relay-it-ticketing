@@ -1,4 +1,3 @@
-
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
@@ -17,17 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/dashboard');
 
 Route::middleware('guest')->group(function () {
-
     Route::get('/login', [LoginController::class, 'show'])
         ->name('login');
 
     Route::post('/login', [LoginController::class, 'login'])
         ->middleware('throttle:5,1');
-
 });
 
 Route::middleware('auth')->group(function () {
-
     Route::get('/dashboard', function () {
         return match (auth()->user()->role) {
             'admin' => redirect()->route('admin.dashboard'),
@@ -43,7 +39,6 @@ Route::middleware('auth')->group(function () {
         ->name('admin.')
         ->middleware('role:admin')
         ->group(function () {
-
             Route::get('/dashboard', [AdminDashboard::class, 'index'])
                 ->name('dashboard');
 
@@ -57,14 +52,12 @@ Route::middleware('auth')->group(function () {
             );
 
             Route::resource('tickets', AdminTicketController::class);
-
         });
 
     Route::prefix('technician')
         ->name('technician.')
         ->middleware('role:technician')
         ->group(function () {
-
             Route::get('/dashboard', [TechnicianDashboard::class, 'index'])
                 ->name('dashboard');
 
@@ -74,6 +67,19 @@ Route::middleware('auth')->group(function () {
             Route::get('/tickets/{ticket}', [TechnicianTicketController::class, 'show'])
                 ->name('tickets.show');
 
-        });
+            Route::post('/tickets/{ticket}/diagnosis', [
+                TechnicianTicketController::class,
+                'storeDiagnosis',
+            ])->name('tickets.diagnosis.store');
 
+            Route::post('/tickets/{ticket}/notes', [
+                TechnicianTicketController::class,
+                'storeNote',
+            ])->name('tickets.notes.store');
+
+            Route::patch('/tickets/{ticket}/status', [
+                TechnicianTicketController::class,
+                'updateStatus',
+            ])->name('tickets.status.update');
+        });
 });

@@ -173,3 +173,28 @@
         width: 100%;
     }
 }
+
+/* Phase 06 — Diagnosis Approval */
+.relay-approval-heading{margin-bottom:24px}
+.relay-approval-eyebrow{margin-bottom:9px;color:var(--relay-lime);font-size:10px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase}
+.relay-approval-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:22px 0}
+.relay-approval-details>div{display:flex;flex-direction:column;gap:8px;padding:17px;border:1px solid var(--relay-border);border-radius:16px;background:var(--relay-surface-dark)}
+.relay-approval-details span,.relay-approval-text span{color:var(--relay-muted);font-size:11px}
+.relay-approval-details strong{color:var(--relay-text);font-size:13px;overflow-wrap:anywhere}
+.relay-approval-state.approved{color:var(--relay-lime)}
+.relay-approval-state.rejected{color:#ffaaaa}
+.relay-approval-state.pending{color:#f1d59b}
+.relay-approval-text{display:grid;gap:16px;margin:22px 0}
+.relay-approval-text>div{padding:17px;border:1px solid var(--relay-border);border-radius:16px;background:var(--relay-surface-dark)}
+.relay-approval-text p{margin-top:9px;color:var(--relay-text);font-size:13px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}
+.relay-approval-form{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.relay-approval-form label{color:var(--relay-text);font-size:12px;font-weight:650}
+.relay-approval-form textarea{min-height:110px;width:100%;padding:14px;border:1px solid #555;border-radius:14px;outline:none;background:#292929;color:var(--relay-text);font:inherit;font-size:13px;resize:vertical}
+.relay-approval-form textarea:focus{border-color:var(--relay-lime)}
+.relay-approval-buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.relay-approval-button{padding:12px 20px;border:1px solid transparent;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer}
+.relay-approval-button.approve{background:var(--relay-lime);color:#222}
+.relay-approval-button.reject{background:#4e3838;border-color:#825555;color:#ffaaaa}
+.relay-approval-notice{padding:16px;border:1px solid var(--relay-border);border-radius:15px;background:var(--relay-surface-dark);color:var(--relay-muted);font-size:12px;line-height:1.7}
+.relay-approval-error{color:#ffaaaa;font-size:12px}
+@media(max-width:768px){.relay-approval-details{grid-template-columns:1fr}.relay-approval-buttons{flex-direction:column}.relay-approval-button{width:100%}}

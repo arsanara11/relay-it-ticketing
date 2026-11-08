@@ -133,6 +133,8 @@ class TicketController extends Controller
             'creator',
             'activities' => fn ($query) =>
                 $query->with('user')->latest(),
+            'diagnoses' => fn ($query) =>
+                $query->with('technician')->latest('id'),
         ]);
 
         return view('admin.tickets.show', compact('ticket'));
@@ -238,6 +240,58 @@ class TicketController extends Controller
         return redirect()
             ->route('admin.tickets.index')
             ->with('success', 'Service ticket cancelled.');
+    }
+
+    public function decideDiagnosis(Request $request, Ticket $ticket): RedirectResponse
+    {
+        $validated = $request->validate([
+            'decision' => ['required', Rule::in(['approved', 'rejected'])],
+            'decision_note' => ['required', 'string', 'max:2000'],
+        ]);
+
+        DB::transaction(function () use ($request, $ticket, $validated) {
+            $locked = Ticket::query()->lockForUpdate()->findOrFail($ticket->id);
+
+            if ($locked->status !== 'awaiting_approval') {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'decision' => 'Only tickets awaiting approval can be reviewed.',
+                ]);
+            }
+
+            $diagnosis = $locked->diagnoses()->latest('id')->lockForUpdate()->first();
+
+            if (! $diagnosis || $diagnosis->approval_status !== 'pending'
+                || (float) $diagnosis->estimated_cost <= 0) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'decision' => 'A pending paid diagnosis is required.',
+                ]);
+            }
+
+            $decision = $validated['decision'];
+            $diagnosis->update([
+                'approval_status' => $decision,
+                'approved_at' => $decision === 'approved' ? now() : null,
+            ]);
+
+            $oldStatus = $locked->status;
+            $newStatus = $decision === 'approved' ? 'awaiting_approval' : 'on_hold';
+
+            if ($decision === 'rejected') {
+                $locked->update(['status' => 'on_hold']);
+            }
+
+            $locked->activities()->create([
+                'user_id' => $request->user()->id,
+                'action' => 'diagnosis_'.$decision,
+                'old_status' => $oldStatus,
+                'new_status' => $newStatus,
+                'description' => 'Customer decision recorded by admin: '.ucfirst($decision)
+                    .'. Note: '.$validated['decision_note'],
+            ]);
+        });
+
+        return redirect()->route('admin.tickets.show', $ticket)
+            ->with('success', 'Diagnosis decision recorded successfully.');
     }
 
     private function rules(): array

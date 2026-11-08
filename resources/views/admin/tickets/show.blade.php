@@ -12,6 +12,12 @@
     </div>
 @endif
 
+@if ($errors->any())
+    <div class="relay-alert error" role="alert">
+        @foreach ($errors->all() as $error) <div>{{ $error }}</div> @endforeach
+    </div>
+@endif
+
 @if (session('error'))
     <div class="relay-alert error" role="alert">
         {{ session('error') }}
@@ -144,6 +150,54 @@
 
     </div>
 
+</section>
+
+<section class="relay-panel relay-ticket-section">
+    <div class="relay-approval-heading">
+        <div>
+            <div class="relay-approval-eyebrow">Service Authorization</div>
+            <h2 class="relay-panel-title">Diagnosis & Customer Approval</h2>
+            <p class="relay-section-description">Review the latest technical assessment and record the customer's decision.</p>
+        </div>
+    </div>
+
+    @php $diagnosis = $ticket->diagnoses->first(); @endphp
+
+    @if ($diagnosis)
+        <div class="relay-approval-details">
+            <div><span>Technician</span><strong>{{ $diagnosis->technician?->name ?? 'Unknown' }}</strong></div>
+            <div><span>Estimated Cost</span><strong>Rp {{ number_format($diagnosis->estimated_cost, 0, ',', '.') }}</strong></div>
+            <div><span>Approval Status</span><strong class="relay-approval-state {{ $diagnosis->approval_status }}">{{ ucfirst($diagnosis->approval_status) }}</strong></div>
+            <div><span>Diagnosed At</span><strong>{{ $diagnosis->diagnosed_at?->format('d M Y, H:i') ?? '—' }}</strong></div>
+        </div>
+        <div class="relay-approval-text">
+            <div><span>Findings</span><p>{{ $diagnosis->findings }}</p></div>
+            <div><span>Recommended Action</span><p>{{ $diagnosis->recommended_action }}</p></div>
+        </div>
+
+        @if ($ticket->status === 'awaiting_approval' && $diagnosis->approval_status === 'pending' && (float) $diagnosis->estimated_cost > 0)
+            <form method="POST" action="{{ route('admin.tickets.diagnosis.decide', $ticket) }}" class="relay-approval-form">
+                @csrf
+                @method('PATCH')
+                <label for="decision_note">Customer Decision Notes <span aria-hidden="true">*</span></label>
+                <textarea id="decision_note" name="decision_note" maxlength="2000" required placeholder="E.g. Customer confirmed the estimate by phone at 14:30.">{{ old('decision_note') }}</textarea>
+                @error('decision_note') <p class="relay-approval-error">{{ $message }}</p> @enderror
+                @error('decision') <p class="relay-approval-error">{{ $message }}</p> @enderror
+                <div class="relay-approval-buttons">
+                    <button type="submit" name="decision" value="approved" class="relay-approval-button approve" onclick="return confirm('Confirm that the customer approved this estimate?')">Approve Diagnosis</button>
+                    <button type="submit" name="decision" value="rejected" class="relay-approval-button reject" onclick="return confirm('Confirm that the customer rejected this estimate?')">Reject Diagnosis</button>
+                </div>
+            </form>
+        @elseif ($diagnosis->approval_status === 'approved')
+            <div class="relay-approval-notice">Approved. The assigned technician can now move this ticket to Repairing.</div>
+        @elseif ($diagnosis->approval_status === 'rejected')
+            <div class="relay-approval-notice">Rejected. This ticket is On Hold and cannot proceed to repair. Admin may cancel it if needed.</div>
+        @else
+            <div class="relay-approval-notice">Approval actions become available when a paid diagnosis is awaiting approval.</div>
+        @endif
+    @else
+        <div class="relay-approval-notice">No diagnosis has been recorded for this ticket yet.</div>
+    @endif
 </section>
 
 <section class="relay-panel relay-ticket-section">

@@ -135,6 +135,9 @@ class TicketController extends Controller
                 $query->with('user')->latest(),
             'diagnoses' => fn ($query) =>
                 $query->with('technician')->latest('id'),
+            'costs' => fn ($query) => $query->latest('id'),
+            'payments' => fn ($query) => $query->with('recorder')->latest('id'),
+            'handover' => fn ($query) => $query->with('staff'),
         ]);
 
         return view('admin.tickets.show', compact('ticket'));
@@ -208,27 +211,31 @@ class TicketController extends Controller
             ->with('success', 'Service ticket updated successfully.');
     }
 
-    public function destroy(
-        Request $request,
-        Ticket $ticket
-    ): RedirectResponse {
-        if (in_array($ticket->status, ['completed', 'cancelled'], true)) {
-            return back()->with(
-                'error',
-                'This ticket is already closed.'
-            );
-        }
-
+    public function destroy(Request $request, Ticket $ticket): RedirectResponse
+    {
         DB::transaction(function () use ($ticket, $request) {
-            $oldStatus = $ticket->status;
+            $locked = Ticket::query()->lockForUpdate()->findOrFail($ticket->id);
 
-            $ticket->update([
+            if (in_array($locked->status, ['completed', 'cancelled'], true)) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'ticket' => 'This ticket is already closed.',
+                ]);
+            }
+
+            if ($locked->payments()->exists() || $locked->handover()->exists()) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'ticket' => 'Tickets with payments or handover records cannot be cancelled.',
+                ]);
+            }
+
+            $oldStatus = $locked->status;
+
+            $locked->update([
                 'status' => 'cancelled',
                 'closed_at' => now(),
             ]);
 
-            TicketActivity::create([
-                'ticket_id' => $ticket->id,
+            $locked->activities()->create([
                 'user_id' => $request->user()->id,
                 'action' => 'cancelled',
                 'old_status' => $oldStatus,
@@ -237,8 +244,7 @@ class TicketController extends Controller
             ]);
         });
 
-        return redirect()
-            ->route('admin.tickets.index')
+        return redirect()->route('admin.tickets.index')
             ->with('success', 'Service ticket cancelled.');
     }
 
@@ -258,7 +264,10 @@ class TicketController extends Controller
                 ]);
             }
 
-            $diagnosis = $locked->diagnoses()->latest('id')->lockForUpdate()->first();
+            $diagnosis = $locked->diagnoses()
+                ->latest('id')
+                ->lockForUpdate()
+                ->first();
 
             if (! $diagnosis || $diagnosis->approval_status !== 'pending'
                 || (float) $diagnosis->estimated_cost <= 0) {
@@ -268,13 +277,16 @@ class TicketController extends Controller
             }
 
             $decision = $validated['decision'];
+
             $diagnosis->update([
                 'approval_status' => $decision,
                 'approved_at' => $decision === 'approved' ? now() : null,
             ]);
 
             $oldStatus = $locked->status;
-            $newStatus = $decision === 'approved' ? 'awaiting_approval' : 'on_hold';
+            $newStatus = $decision === 'approved'
+                ? 'awaiting_approval'
+                : 'on_hold';
 
             if ($decision === 'rejected') {
                 $locked->update(['status' => 'on_hold']);
@@ -285,7 +297,8 @@ class TicketController extends Controller
                 'action' => 'diagnosis_'.$decision,
                 'old_status' => $oldStatus,
                 'new_status' => $newStatus,
-                'description' => 'Customer decision recorded by admin: '.ucfirst($decision)
+                'description' => 'Customer decision recorded by admin: '
+                    .ucfirst($decision)
                     .'. Note: '.$validated['decision_note'],
             ]);
         });

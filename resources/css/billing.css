@@ -1,0 +1,225 @@
+.relay-billing {
+    color: var(--relay-text);
+}
+
+.relay-billing-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.relay-billing-eyebrow {
+    color: var(--relay-lime);
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.relay-billing-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 24px 0;
+}
+
+.relay-billing-stats > div {
+    background: var(--relay-surface-dark);
+    border: 1px solid var(--relay-border);
+    border-radius: 18px;
+    padding: 19px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.relay-billing-stats span,
+.relay-billing-handover span {
+    color: var(--relay-muted);
+    font-size: 11px;
+}
+
+.relay-billing-stats strong {
+    color: var(--relay-lime);
+    font-size: 20px;
+    letter-spacing: -.5px;
+}
+
+.relay-billing-subtitle {
+    font-size: 15px;
+    font-weight: 650;
+    margin: 28px 0 14px;
+}
+
+.relay-billing-scroll {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.relay-billing-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    min-width: 620px;
+}
+
+.relay-billing-table th {
+    color: var(--relay-muted);
+    font-size: 10px;
+    text-align: left;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    padding: 14px 12px;
+    border-bottom: 1px solid var(--relay-border);
+}
+
+.relay-billing-table td {
+    padding: 14px 12px;
+    border-bottom: 1px solid var(--relay-border);
+    color: var(--relay-text);
+    vertical-align: middle;
+}
+
+.relay-billing-empty {
+    text-align: center;
+    color: var(--relay-muted) !important;
+    padding: 24px !important;
+}
+
+.relay-billing-form {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 22px;
+    padding: 20px;
+    background: var(--relay-surface-dark);
+    border: 1px solid var(--relay-border);
+    border-radius: 19px;
+}
+
+.relay-billing-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.relay-billing-field label {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.relay-billing-field input,
+.relay-billing-field select,
+.relay-billing-field textarea {
+    width: 100%;
+    min-height: 43px;
+    border: 1px solid #4b4b4b;
+    border-radius: 12px;
+    padding: 11px 13px;
+    background: #292929;
+    color: var(--relay-text);
+    font: inherit;
+    font-size: 12px;
+}
+
+.relay-billing-field textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.relay-billing-field input:focus,
+.relay-billing-field select:focus,
+.relay-billing-field textarea:focus {
+    outline: 2px solid var(--relay-lime);
+    outline-offset: 1px;
+}
+
+.relay-billing-wide {
+    grid-column: span 2;
+}
+
+.relay-billing-form-actions {
+    grid-column: 1 / -1;
+}
+
+.relay-billing-button {
+    background: var(--relay-lime);
+    color: #222;
+    border: 0;
+    border-radius: 999px;
+    padding: 12px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.relay-billing-button:hover {
+    filter: brightness(.95);
+}
+
+.relay-billing-danger {
+    border: 1px solid #8e5454;
+    color: #ffaaaa;
+    background: #4e3838;
+    border-radius: 999px;
+    padding: 7px 11px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.relay-billing-notice {
+    margin: 18px 0;
+    border: 1px solid var(--relay-border);
+    border-radius: 14px;
+    background: var(--relay-surface-dark);
+    color: var(--relay-muted);
+    padding: 15px;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.relay-billing-handover {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 22px;
+    background: var(--relay-surface-dark);
+    border: 1px solid var(--relay-border);
+    border-radius: 18px;
+    padding: 20px;
+}
+
+.relay-billing-handover > div {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.relay-billing-handover strong {
+    font-size: 13px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px) {
+    .relay-billing-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .relay-billing-form {
+        grid-template-columns: 1fr;
+    }
+
+    .relay-billing-wide {
+        grid-column: auto;
+    }
+
+    .relay-billing-handover {
+        grid-template-columns: 1fr;
+    }
+}
